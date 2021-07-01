@@ -4,6 +4,9 @@ namespace ConsoleArenaFighter
 {
     public class ArenaFighter
     {
+        private static int minStatValue = 2;
+        private static int maxStatValue = 10;
+
         static void Main(string[] args)
         {
             string betweenRoundsMenu = "What do you want to do?\n"
@@ -12,18 +15,20 @@ namespace ConsoleArenaFighter
             Character player = null;
             bool continueGame = true;
 
+            //Loops until the player has enter a name, accept anything other than empty or a single whitepace
             while (player == null)
             {
                 string name = AskPlayerForName("Enter the name of your character.");
-                player = CreatePlayerCharacter(name);
+                player = CreateACharacter(name);
                 Console.Clear();
             }
+
+
 
             //Game Loop
             while (continueGame)
             {
-                PrintMenuBetweenRounds();
-
+                ShowCharacterInfo(player);
                 ConsoleKeyInfo answer = AskPlayerForAction(betweenRoundsMenu);
                 Console.Clear();
 
@@ -42,20 +47,9 @@ namespace ConsoleArenaFighter
             //EndGame(); //Print
         }
 
-        public static Character CreatePlayerCharacter(string name)
-        {
-            Character player = null;
-
-            if (!(string.IsNullOrWhiteSpace(name)))
-            {
-                player = new Character();
-            }
-            else
-                return player;
-
-            return player;
-        }
+        /////////////////////////////////////////////////////////////////////////Ouputs to players and/or inputs from player
         
+        ///
         /// <summary>
         /// The game needs a name and thus can take an entire row
         /// </summary>
@@ -80,14 +74,48 @@ namespace ConsoleArenaFighter
             return Console.ReadKey();
         }
 
-        public static void PrintMenuBetweenRounds()
+        public static void ShowCharacterInfo(Character character)
         {
+            Console.WriteLine(character.stats());
+        }
 
+
+        /////////////////////////////////////////////////////////////////////////Character creation methods
+        public static Character CreateACharacter(string name)
+        {
+            Character player = null;
+
+            if (!(string.IsNullOrWhiteSpace(name)))
+            {
+                player = GenerateStats(name);
+            }
+            else
+                return player;
+
+            return player;
         }
 
         public static void GenerateOpponentCharacterName()
         {
             
+        } 
+        
+        public static Character GenerateStats(string name)
+        {
+            int strength = RandomizeValue();
+            int damage = RandomizeValue();
+            int health = RandomizeValue();
+
+            Character character = new Character(name, strength, damage, health);
+
+            return character;
+        }
+
+        public static int RandomizeValue()
+        {
+            Random rnd = new Random();
+
+            return rnd.Next(minStatValue, maxStatValue);
         }
     }
 }
