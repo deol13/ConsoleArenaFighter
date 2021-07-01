@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleArenaFighter
 {
-    class Character
+    public class Character
     {
     }
 }
