@@ -9,7 +9,7 @@ namespace ConsoleArenaFighter
 
         static void Main(string[] args)
         {
-            string betweenRoundsMenu = "What do you want to do?\n"
+            string mainMenu = "What do you want to do?\n"
                                      + "H - Hunt for an opponent\n"
                                      + "R - Retire from fightning\n";
             Character player = null;
@@ -29,7 +29,7 @@ namespace ConsoleArenaFighter
             while (continueGame)
             {
                 ShowCharacterInfo(player);
-                ConsoleKeyInfo answer = AskPlayerForAction(betweenRoundsMenu);
+                ConsoleKeyInfo answer = AskPlayerForAction(mainMenu);
                 Console.Clear();
 
                 if (answer.Key.ToString() == "H")
