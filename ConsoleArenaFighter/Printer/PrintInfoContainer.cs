@@ -13,6 +13,7 @@ namespace ConsoleArenaFighter.Printer
         public static string opponentName = "";
 
         public static bool playerWon = false;
+        public static bool even = false;
 
         public static int playerHealth = 0;
         public static int opponentHealth = 0;

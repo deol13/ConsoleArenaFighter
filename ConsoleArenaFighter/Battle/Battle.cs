@@ -29,6 +29,7 @@ namespace ConsoleArenaFighter
         {
             Character character = CreateCharacter.CreateACharacter(generator.NextUserName());
             PrintInfoContainer.opponentName = character.Name;
+            PrintInfoContainer.opponentStrength = character.Strength;
 
             return character;
         }
@@ -36,6 +37,8 @@ namespace ConsoleArenaFighter
         private bool ARoundOfFightning(bool playerWon)
         {
             bool continueFighting = true;
+            PrintInfoContainer.playerWon = false;
+            PrintInfoContainer.even = false;
 
             //Call round class
             Round round = new Round();

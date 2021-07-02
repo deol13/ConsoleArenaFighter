@@ -20,9 +20,11 @@ namespace ConsoleArenaFighter
             {
                 string name = PrintToUser.AskPlayerForName("Enter the name of your character.");
                 player = CreateCharacter.CreateACharacter(name);
-                PrintInfoContainer.playerName = name;
+
                 Console.Clear();
             }
+            PrintInfoContainer.playerName = player.Name;
+            PrintInfoContainer.playerStrength = player.Strength;
 
             //Game Loop
             while (continueGame)

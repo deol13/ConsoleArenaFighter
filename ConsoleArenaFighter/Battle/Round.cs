@@ -34,7 +34,7 @@ namespace ConsoleArenaFighter
 
                 playerWon = true;
             }
-            else
+            else if((playerTotalRoll) < (opponentTotalRoll))
             {
                 player.health -= opponent.Damage;
 
@@ -42,6 +42,10 @@ namespace ConsoleArenaFighter
                 PrintInfoContainer.winnersDamage = opponent.Damage;
 
                 playerWon = false;
+            }
+            else
+            {
+                PrintInfoContainer.even = true;
             }
 
             PrintInfoContainer.opponentHealth = opponent.health;

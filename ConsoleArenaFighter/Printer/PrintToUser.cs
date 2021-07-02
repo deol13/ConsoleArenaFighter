@@ -59,10 +59,16 @@ namespace ConsoleArenaFighter
             int opponentHealth = PrintInfoContainer.opponentHealth;
             int winnersDamage = PrintInfoContainer.winnersDamage;
 
+            Console.WriteLine("---------------");
+
             Console.WriteLine($"Rolls: {playerName} {playerRoll + playerStrength} ({playerRoll}+{playerStrength}) " +
                 $" vs {opponentName} {opponentRoll + opponentStrength} ({opponentRoll}+{opponentStrength})");
             
-            if (PrintInfoContainer.playerWon)
+            if(PrintInfoContainer.even)
+            {
+                Console.WriteLine("Evenly matched, the combatants circle each other.");
+            }
+            else if (PrintInfoContainer.playerWon)
             {
                 ChangeTextColor(2); //Green for player win
                 Console.WriteLine($"{playerName} attacks {opponentName}! {opponentName} takes {winnersDamage} damage.");
