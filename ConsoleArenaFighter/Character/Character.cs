@@ -6,15 +6,14 @@ namespace ConsoleArenaFighter
 {
     public class Character
     {
-        string name;
-        int strength;
-        int damage;
-        int health;
+        readonly string name;
+        readonly int strength;
+        readonly int damage;
+        public int health;
 
         public string Name { get { return name;  } }
         public int Strength { get { return strength; } }
         public int Damage { get { return damage;  } }
-        public int Health { get { return health; } }
 
         public Character(string name, int strength, int damage, int health)
         {
@@ -24,7 +23,7 @@ namespace ConsoleArenaFighter
             this.health = health;
         }
 
-        public string stats()
+        public string Stats()
         {
             return $"Name: {name}\nStrength: {strength}\nDamage: {damage}\nHealth: {health}\n";
         }
