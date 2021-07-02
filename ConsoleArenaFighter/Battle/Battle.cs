@@ -34,7 +34,7 @@ namespace ConsoleArenaFighter
             return character;
         }
 
-        private bool ARoundOfFightning(bool playerWon)
+        private bool ARoundOfFightning(ref bool playerWon)
         {
             bool continueFighting = true;
             PrintInfoContainer.playerWon = false;
@@ -57,17 +57,17 @@ namespace ConsoleArenaFighter
 
             while (continueFightning)
             {
-                continueFightning = ARoundOfFightning(playerWon);
+                continueFightning = ARoundOfFightning(ref playerWon);
                 PrintToUser.PrintRound();
             }
 
-            if (!playerWon)
+            if (playerWon)
             {
-                PrintToUser.AskPlayerForAction($"---------------\n{opponent.Name} is victorious!");
+                PrintToUser.AskPlayerForAction($"---------------\n{player.Name} is victorious!");
             }
             else
             {
-                PrintToUser.AskPlayerForAction($"---------------\n{player.Name} is victorious!");
+                PrintToUser.AskPlayerForAction($"---------------\n{opponent.Name} is victorious!");
             }
 
             return playerWon;
