@@ -18,6 +18,8 @@ namespace ConsoleArenaFighter
         public Character Player { get { return player; } }
         public Character Opponent { get { return opponent; } }
 
+        public Character[] ListOfOpponents { get { return listOfOpponents;  } }
+
         public Character InitiateBattle(Character player)
         {
             this.player = player;
@@ -52,8 +54,10 @@ namespace ConsoleArenaFighter
 
         public bool ABattle()
         {
-            bool playerWon = false;
+            bool playerWon = true;
             bool continueFightning = true;
+
+            CollectBattleLog();
 
             while (continueFightning)
             {
@@ -75,24 +79,10 @@ namespace ConsoleArenaFighter
 
 
 
-
-
         private void CollectBattleLog()
         {
             Array.Resize(ref listOfOpponents, listOfOpponents.Length + 1);
             listOfOpponents[listOfOpponents.Length - 1] = opponent;
-            opponent = null;
         }
-        //public string BattleLog(int index)
-        //{
-        //    string name = "";
-        //
-        //    if(index > -1 && index < listOfOpponents.Length)
-        //    {
-        //        name = listOfOpponents[index].Name;
-        //    }
-        //
-        //    return name;
-        //}
     }
 }

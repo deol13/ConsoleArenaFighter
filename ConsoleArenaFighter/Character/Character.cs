@@ -25,6 +25,8 @@ namespace ConsoleArenaFighter
 
         public string Stats()
         {
+            if(health <= 0)
+                return $"Name: {name}\nStrength: {strength}\nDamage: {damage}\nHealth: Dead\n";
             return $"Name: {name}\nStrength: {strength}\nDamage: {damage}\nHealth: {health}\n";
         }
     }

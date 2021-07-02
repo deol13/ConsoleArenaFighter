@@ -14,6 +14,7 @@ namespace ConsoleArenaFighter
             Character player = null;
             Battle battle = new Battle();
             bool continueGame = true;
+            bool playerAlive = true;
 
             //Loops until the player has enter a name, accept anything other than empty or a single whitepace
             while (player == null)
@@ -34,7 +35,6 @@ namespace ConsoleArenaFighter
                 //Main menu, show character info and options
                 PrintToUser.ShowCharacterInfo(player);
                 ConsoleKeyInfo answer = PrintToUser.AskPlayerForAction(mainMenu);
-                Console.Clear();
 
                 //H is for Fightnig and R is for retiring
 
@@ -50,17 +50,57 @@ namespace ConsoleArenaFighter
                     Console.ReadKey();
 
                     //Call the battle loop
-                    continueGame = battle.ABattle();
+                    playerAlive = battle.ABattle();
+                    continueGame = playerAlive;
                 }
                 //Print battle history and end game
                 else if(answer.Key.ToString() == "R")
                 {
-                    //PrintToUser.PrintHistory();
                     continueGame = false;
+
+                    PrintToUser.AskPlayerForAction("You have ended the violence by not fightning.");
                 }
             }
 
-            //PrintToUser.PrintHistory();
+            Console.Clear();
+            Console.WriteLine("Final Statistics:\n");
+            PrintToUser.ShowCharacterInfo(player);
+            string history = CalcPlayerPoints(battle, player.Name, playerAlive);
+            PrintToUser.AskPlayerForAction(history);
         }
+
+        /// <summary>
+        /// You get 5p for each kill and 2p if you died in battle.
+        /// </summary>
+        /// <param name="battle">Object holding the battles</param>
+        /// <param name="died">If the player died this methods needs to know</param>
+        /// <returns></returns>
+        public static string CalcPlayerPoints(Battle battle, string playerName, bool playerAlive)
+        {
+            Character[] list = battle.ListOfOpponents;
+            string history = "";
+            int score = 0;
+
+            for (int i = 0; i < list.Length-1; i++)
+            {
+                score += 5;
+                history += $"{playerName} fought and killed {list[i].Name}.\n";
+            }
+
+            if (!playerAlive)
+            {
+                score += 2;
+                history += $"{playerName} was killed by {list[list.Length-1].Name}.\n";
+            }
+            else if(list.Length > 0)
+            {
+                score += 5;
+                history += $"{playerName} fought and killed {list[list.Length - 1].Name}.\n";
+            }
+            history += $"{playerName} total score is {score}.";
+
+            return history;
+        }
+
     }
 }

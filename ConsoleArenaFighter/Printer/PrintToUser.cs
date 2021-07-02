@@ -72,15 +72,15 @@ namespace ConsoleArenaFighter
             {
                 ChangeTextColor(2); //Green for player win
                 Console.WriteLine($"{playerName} attacks {opponentName}! {opponentName} takes {winnersDamage} damage.");
+                Console.WriteLine($"Remaining Health: {playerName} ({playerHealth}) {opponentName} (Dead)\n");
             }
             else
             {
                 ChangeTextColor(1); //Red for opponent win
                 Console.WriteLine($"{opponentName} attacks {playerName}! {playerName} takes {winnersDamage} damage.");
+                Console.WriteLine($"Remaining Health: {playerName} (Dead) {opponentName} ({opponentHealth})\n");
             }
             ChangeTextColor(3); //Change it back to default
-
-            Console.WriteLine($"Remaining Health: {playerName} ({playerHealth}) {opponentName} ({opponentHealth})\n");
 
             Console.ReadKey();
         }
