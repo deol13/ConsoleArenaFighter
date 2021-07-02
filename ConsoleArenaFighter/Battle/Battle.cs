@@ -61,6 +61,15 @@ namespace ConsoleArenaFighter
                 PrintToUser.PrintRound();
             }
 
+            if (!playerWon)
+            {
+                PrintToUser.AskPlayerForAction($"---------------\n{opponent.Name} is victorious!");
+            }
+            else
+            {
+                PrintToUser.AskPlayerForAction($"---------------\n{player.Name} is victorious!");
+            }
+
             return playerWon;
         }
 

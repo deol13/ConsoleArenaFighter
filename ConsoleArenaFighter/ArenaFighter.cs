@@ -50,14 +50,7 @@ namespace ConsoleArenaFighter
                     Console.ReadKey();
 
                     //Call the battle loop
-                    bool playerWon = battle.ABattle();
-                    if (!playerWon)
-                    {
-                       //If the player lost
-                       //PrintToUser.PrintHistory(); //Send in battle log as a string array maybe
-                       continueGame = false;
-                    }
-
+                    continueGame = battle.ABattle();
                 }
                 //Print battle history and end game
                 else if(answer.Key.ToString() == "R")
@@ -66,6 +59,8 @@ namespace ConsoleArenaFighter
                     continueGame = false;
                 }
             }
+
+            //PrintToUser.PrintHistory();
         }
     }
 }
